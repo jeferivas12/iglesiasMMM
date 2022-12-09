@@ -1,0 +1,44 @@
+{
+    "iglesias":[
+        {
+            "nombre":"MMM barrio Boston",
+            "pastor":"Pedro David Gamez",
+            "dirección":"cll 56 # 36a 32",
+            "Barrio":"Boston",
+            "Ciudad":"Medellin",
+            "Departamento":"Antioquia",
+            "Telefono":"Boston",
+            "Imagen":"Boston.png"
+        },
+        {
+            "nombre":"MMM barrio Boston",
+            "pastor":"Pedro David Gamez",
+            "dirección":"cll 56 # 36a 32",
+            "Barrio":"Boston",
+            "Ciudad":"Medellin",
+            "Departamento":"Antioquia",
+            "Telefono":"Boston",
+            "Imagen":"Boston.png"
+        },
+        {
+            "nombre":"MMM barrio Boston",
+            "pastor":"Pedro David Gamez",
+            "dirección":"cll 56 # 36a 32",
+            "Barrio":"Boston",
+            "Ciudad":"Medellin",
+            "Departamento":"Antioquia",
+            "Telefono":"Boston",
+            "Imagen":"Boston.png"
+        },
+        {
+            "nombre":"MMM barrio Boston",
+            "pastor":"Pedro David Gamez",
+            "dirección":"cll 56 # 36a 32",
+            "Barrio":"Boston",
+            "Ciudad":"Medellin",
+            "Departamento":"Antioquia",
+            "Telefono":"Boston",
+            "Imagen":"Boston.png"
+        }
+    ]
+}
