@@ -5,26 +5,57 @@
 }
 .iglesia{
     margin: 10px;
-    max-width: 300px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    box-shadow: -1px 2px 10px #F2A71B;
+    box-shadow: -1px 2px 5px #F2A71B;
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
+    background-color: #ffffff;
+    background-image: linear-gradient(160deg, #ffffff 50%, #f2a71b 100%);
+    transition-duration: 0.5s;
+    /*transition-property: height, width;*/
+
+}
+
+.iglesia:hover{
+    box-shadow: -1px 2px 5px #4EB1D9;
+    background-color: #ffffff;
+    background-image: linear-gradient(160deg, #ffffff 50%, #4EB1D9 100%);
 }
 .iglesias{
-    display: flex;
-    flex-wrap: wrap;
-   
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,350px);
+    width: 100%;
+    gap: 10px;
+    justify-content: center;
+    
+    
 }
+.iglesiaDetalle{
+    grid-column: 1/4;
+    flex-direction: row;
+    min-width: 71%;
+    /*width: 70%;*/
+    left: 0;
+    gap: 10px;
+    flex-wrap: wrap;
+    text-align: left;
+    position: absolute;
+    transition-duration: 0.5s;
+    min-height: 237px;
+    padding: 15px;
+    align-items: center;
+}
+
 img{
     width: 240px;
     height: 180px;
     border-radius: 10px;
+    object-fit: contain;
 }
 article{
     box-shadow: -1px 2px 10px #4EB1D9;
@@ -61,7 +92,6 @@ body{
     
 }
 .detalle{
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,4 +110,36 @@ select:focus{
     border:none;
     outline: none;
     
+}
+option{
+    border-radius: 10px;
+    color: blue;
+    background-color: #f2a71b;
+    border: none;
+    object-fit: none;
+}
+.inactive{
+    display: none;
+}
+@media (max-width: 640px) {
+    body{
+        
+        grid-template-columns: 1fr ;
+        grid-template-rows:min-content 8.5fr min-content min-content;
+        
+    }
+    nav{
+        grid-column:1/2;        
+    }
+    footer{
+        grid-column:1/2;
+    }
+    .detalle{
+        grid-column:1/2;
+    }
+    .iglesiaDetalle{
+        grid-column: 1/4;
+        flex-direction: row;
+        width: auto;
+    }
 }

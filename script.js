@@ -1,4 +1,5 @@
-const jsonIglesias = [
+
+/*const jsonIglesias = [
     {
         "nombre":"MMM Boston",
         "pastor":"Pedro David Gamez",
@@ -39,81 +40,97 @@ const jsonIglesias = [
         "Telefono":"3216547",
         "Imagen":"boston.jpg"
     }
-]
+]*/
+const jsonIglesias = []
+console.log("prueba exitosa")
+const firebase = async () =>
+{
+    const modFirebase = await import("./modFirebase.js")
+    console.log("nada")
+    const queryData =  await modFirebase.getIglesia()
+    queryData.forEach(doc => jsonIglesias.push(doc.data()))
+    //console.log(queryData)
+    console.log(jsonIglesias)
+    cargaDatos()
+}
+
+firebase()
+
 const content = document.querySelector(".iglesias")
 const filtroCiudad = document.querySelector("#listCiudad")
 const filtroDepartamento = document.querySelector("#listDepartamento")
 const buscar = document.querySelector(".btnBuscar")
 let ciudades = []
 const departamentos = []
-
-jsonIglesias.forEach(e=>{
-    if (!departamentos.includes(e.Departamento))
-    departamentos.push(e.Departamento)
-})
-
-departamentos.sort().forEach(d=>{
-    const opciond = document.createElement("option")
-    opciond.name = d
-    opciond.innerText = d
-    filtroDepartamento.appendChild(opciond)
-})
-
-
-filtroDepartamento.onchange = () => 
-{
-    const opcion2 = document.createElement("option")
-    console.log(filtroDepartamento.value)
-    filtroCiudad.innerHTML=""
-    
-    opcion2.name = "Ciudad"
-    opcion2.innerText = "Ciudad"
-    opcion2.selected = true
-    filtroCiudad.appendChild(opcion2)
-
-    ciudades = []
-
+//const modMostrar2 = await import("./modMostrar.js")
+function cargaDatos () {
     jsonIglesias.forEach(e=>{
-        if (!ciudades.includes(e.Ciudad) && e.Departamento == filtroDepartamento.value )
-        ciudades.push(e.Ciudad)
+        if (!departamentos.includes(e.Departamento))
+        departamentos.push(e.Departamento)
     })
 
-    ciudades.sort().forEach(c=>{    
-        const opcion = document.createElement("option")
-        opcion.name = c
-        opcion.innerText = c
-        filtroCiudad.appendChild(opcion)
+    departamentos.sort().forEach(d=>{
+        const opciond = document.createElement("option")
+        opciond.name = d
+        opciond.innerText = d
+        filtroDepartamento.appendChild(opciond)
     })
+
+
+    filtroDepartamento.onchange = async () => 
+    {
+        const opcion2 = document.createElement("option")
+    
+        if(filtroDepartamento.value == "Departamento")
+        {
+            const modMostrar = await import("./modMostrar.js")
+            content.innerHTML=""
+            modMostrar.mostrar(jsonIglesias)
+        }
+    
+        filtroCiudad.innerHTML=""
+    
+        opcion2.name = "Ciudad"
+        opcion2.innerText = "Ciudad"
+        opcion2.selected = true
+        filtroCiudad.appendChild(opcion2)
+    
+        ciudades = []
+    
+        jsonIglesias.forEach(e=>{
+            if (!ciudades.includes(e.Ciudad) && e.Departamento == filtroDepartamento.value )
+            ciudades.push(e.Ciudad)
+        })
+    
+        ciudades.sort().forEach(c=>{    
+            const opcion = document.createElement("option")
+            opcion.name = c
+            opcion.innerText = c
+            filtroCiudad.appendChild(opcion)
+        })
+    }
+    console.log(ciudades)
+    console.log(departamentos)
+    console.log(filtroCiudad)
+
+
+    //mostrar(jsonIglesias)
+
+
+     const actualiza = async ()=>{
+        const modMostrar = await import("./modMostrar.js")
+        content.innerHTML=""
+        let val = filtroCiudad.value
+        const filtro = jsonIglesias.filter(e => e.Ciudad==val)
+        val=="Ciudad" ? modMostrar.mostrar(jsonIglesias) : modMostrar.mostrar(filtro)    
+    }
+    filtroCiudad.onchange = actualiza
+    }
+    
+const cargadatos = async () => {
+    const c = await import("./modGuardarDatos.js")
+    c.cargadatos()
 }
-console.log(ciudades)
-console.log(departamentos)
-console.log(filtroCiudad)
-
-function mostrar(elemento){
-    elemento.forEach(element => {
-        const iglesia = document.createElement("div")
-        iglesia.className ="iglesia"
-        const image = document.createElement("img")
-        const titulo = document.createElement("h1")
-        const informacion = document.createElement("p")
-        informacion.appendChild(document.createTextNode("Pastor: "+element.pastor))
-        titulo.appendChild(document.createTextNode(element.nombre))
-        image.src = "src/"+element.Imagen
-        iglesia.appendChild(image)
-        iglesia.appendChild(titulo)
-        iglesia.appendChild(informacion)
-        content.appendChild(iglesia)
-})}
-mostrar(jsonIglesias)
-
-
- const actualiza = ()=>{
-    content.innerHTML=""
-    let val = filtroCiudad.value
-    const filtro = jsonIglesias.filter(e => e.Ciudad==val)
-    val=="Ciudad" ? mostrar(jsonIglesias) : mostrar(filtro)
-    console.log(val)
-}
-filtroCiudad.onchange = actualiza
-buscar.onclick = actualiza
-//console.table(jsonIglesias)
+cargadatos()
+//buscar.onclick = actualiza
+//console.table(jsonIglesias)}

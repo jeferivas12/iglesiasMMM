@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
     <title>Document</title>
+    
 </head>
 <body>
     <nav></nav>
@@ -25,7 +26,65 @@
         
     </div>
     <article>Información General</article>
+    <div class="guardaDatos">
+        <button class="btnCargaDatos">Cargar Datos</button>
+        <form id="cargaDatos" class="inactive">
+            <label for="Iglesia">Iglesia</label>
+            <input type="text" placeholder="nombre de la iglesia" id="inpIglesia">
+            <label for="Pastor">Pastor</label>
+            <input type="text" placeholder="nombre del pastor" id="inpPastor">
+            <label for="Barrio">Barrio</label>
+            <input type="text" placeholder="Barrio" id="inpBarrio">
+            <label for="Ciudad">Ciudad</label>
+            <input type="text" placeholder="nombre de la Ciudad" id="inpCiudad">
+            <label for="Departamento">Departamento</label>
+            <input type="text" placeholder="Departamento" id="inpDepartamento">
+            <label for="Telefono">Telefono</label>
+            <input type="text" placeholder="Telefono" id="inpTelefono">
+            <label for="Direccion">Dirección</label>
+            <input type="text" placeholder="Dirección" id="inpDireccion">
+
+            <button id="btnGuardarDatos">Guardar Datos</button>
+
+        </form>
+    </div>
     <footer>Iglesias</footer>
-    <script src="script.js"></script>
+    
+    <script type="module" src="modFirebase.js">
+        // Import the functions you need from the SDKs you need
+       /* import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+        import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-lite.js';
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyB_lDYORlDxwYNGmlGc9eqObonfeQNJEfY",
+          authDomain: "iglesia-f2d34.firebaseapp.com",
+          projectId: "iglesia-f2d34",
+          storageBucket: "iglesia-f2d34.appspot.com",
+          messagingSenderId: "355704246458",
+          appId: "1:355704246458:web:695d99af033e8ee4c67283",
+          measurementId: "G-S3ME94JT9K"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+        console.log("estamos en el scrip conexion html")
+        
+        async function getIglesias(db) {
+            const iglesias = collection(db, 'iglesias');
+            const iglesiaSnapshot = await getDocs(iglesias);
+            const Datos = iglesiaSnapshot.docs.map(doc => doc.data())
+            console.log(Datos[0])
+            return Datos
+            /*const cityList = citySnapshot.docs.map(doc => doc.data());
+            console.log(cityList)
+            return cityList;*/
+       /* }
+        getIglesias(db)
+        */
+    </script>
+    <script src="script.js"> </script>
 </body>
 </html>
